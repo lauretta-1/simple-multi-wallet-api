@@ -11,6 +11,9 @@ use App\Http\Requests\User\GetUserRequest;
 use App\Models\User;
 use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserResourceCollection;
+use CoreProc\WalletPlus\Models\WalletType;
+use CoreProc\WalletPlus\Models\Wallet;
+use CoreProc\WalletPlus\Models\WalletLedger;
 
 class UserController extends Controller
 {
@@ -93,9 +96,36 @@ class UserController extends Controller
         return new UserResourceCollection(User::all());
     }
 
+    //Get User details
     public function getUserDetails(GetUserRequest $request){
         $validated_data = $request->validated();
         $user = User::whereId($validated_data['user_id'])->first();
         return new UserResource($user);
+    }
+
+    //All details - Users/Wallets/Transactions
+    public function appDetails(){
+        $userCount          = User::all()->count();
+        $walletCount        = Wallet::all()->count();
+        $totalWalletBalance = Wallet::all()->sum('raw_balance');
+
+        return response()->json(
+            [
+                'status'               => 'success',
+                'user_count'           => $userCount,
+                'wallet_count'         => $walletCount,
+                'total_wallet_balance' => $totalWalletBalance,
+            ],200);
+
+    }
+
+    //Import Excel file
+    public function importExcelFile(){
+
+    }
+
+    //view file content
+    public function viewFile(){
+        
     }
 }

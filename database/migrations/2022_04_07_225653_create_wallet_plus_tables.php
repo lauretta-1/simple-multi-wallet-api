@@ -17,7 +17,7 @@ class CreateWalletPlusTables extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('decimals')->default(0);
-            $table->integer('minimum_balance');
+            $table->double('minimum_balance');
             $table->double('monthly_interest_rate');
             $table->timestamps();
         });
