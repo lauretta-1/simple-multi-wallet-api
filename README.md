@@ -11,7 +11,7 @@
 This project entails:
 Multiple wallet types. A user can have more than one wallet.
 A wallet has it's name, minimum balance and monthly interest rate.
-User can send money from one wallet to another
+User can send money from one wallet to another.
 Basic CRUD endpoints for Users and Wallets.
 Importing an Excel file and displaying it's content in a json response.
 
