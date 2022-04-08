@@ -14,6 +14,9 @@ use App\Http\Resources\User\UserResourceCollection;
 use CoreProc\WalletPlus\Models\WalletType;
 use CoreProc\WalletPlus\Models\Wallet;
 use CoreProc\WalletPlus\Models\WalletLedger;
+use App\Imports\StatesImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\State;
 
 class UserController extends Controller
 {
@@ -121,11 +124,29 @@ class UserController extends Controller
 
     //Import Excel file
     public function importExcelFile(){
+        $import = Excel::import(new StatesImport,request()->file('file'));
 
+        if($import){
+            return response()->json(
+                [
+                    'status'   => 'success',
+                    'message'  => 'Imported Successfully!'
+                ],201);
+        }else{
+            return response()->json([
+                'message' => 'Something went wrong, Please try again!',
+                'status' => 'failed'
+            ], 400);
+        }
     }
 
     //view file content
     public function viewFile(){
-        
+        $states = State::all();
+        $data = json_decode($states);
+        return response()->json([
+            'status' => 'success',
+            'data'   => $data
+        ], 200);
     }
 }
