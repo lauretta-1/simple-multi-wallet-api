@@ -143,10 +143,10 @@ class UserController extends Controller
     //view file content
     public function viewFile(){
         $states = State::all();
-        $data = json_decode($states);
+        
         return response()->json([
             'status' => 'success',
-            'data'   => $data
+            'data'   => $states
         ], 200);
     }
 }

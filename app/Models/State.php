@@ -13,4 +13,5 @@ class State extends Model
     protected $casts = [
         'state' => 'array',
       ];
+
 }

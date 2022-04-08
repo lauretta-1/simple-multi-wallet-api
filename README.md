@@ -15,7 +15,6 @@ User can send money from one wallet to another.
 Basic CRUD endpoints for Users and Wallets.
 Importing an Excel file and displaying it's content in a json response.
 
-The sample Excel file used is saved as Book1.xlsx in the project root directory.
 Used JWT (Json Web Token) Authentication
 
 API Documentation link - https://documenter.getpostman.com/view/10852539/UVyxPYRA
